@@ -15,6 +15,7 @@ const timeSet = document.querySelector('#setTime');
 const blocksColor = '#FAD897';
 let dotColors = null;
 let TIME_LIMIT = 60;
+let x=0;
 
 function changeDotColors() {
   dotColors = setInterval(() => {
