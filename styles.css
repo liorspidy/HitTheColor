@@ -197,20 +197,39 @@ display: none;
   display: none;
   }
   
-  .points-5.visible{
+.points-5.visible{
+    display: block;
+    color: rgb(164, 10, 10);
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6) ;
+    padding-top: 20px;
+    font-size: 35px;
+    position: fixed;
+    top: 80vh;
+    left: 27vw;
+    animation-name: slideUp;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+}
+
+  .time-10{
+  display: none;
+  }
+  
+  .time-10.visible{
       display: block;
       color: rgb(164, 10, 10);
       text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6) ;
       padding-top: 20px;
       font-size: 35px;
       position: fixed;
-      top: 80vh;
-      left: 27vw;
-      animation-name: slideUp;
+      left: 22vw;
+      animation-name: slideUpMinus10;
       animation-duration: 0.7s;
       animation-timing-function: ease-in-out;
       opacity: 0;
   }
+
 .gameOver{
     display: none;
 }
@@ -284,6 +303,22 @@ display: none;
 
     to {
         top: 76vh;
+        opacity: 0;
+    }
+}
+
+@keyframes slideUpMinus10 {
+    from {
+        top: 9vh;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        top: 7vh;
         opacity: 0;
     }
 }

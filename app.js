@@ -4,6 +4,7 @@ const gameOver = document.querySelector('.gameOver');
 const finalScore = document.querySelector('#yourScore');
 const points5 = document.querySelector('.points5');
 const pointsMinus5 = document.querySelector('.points-5');
+const timeMinus10 = document.querySelector('.time-10');
 const dot = document.querySelector('.dot');
 const restart = document.querySelector('#restart');
 const startGame = document.querySelector('.startGame');
@@ -253,7 +254,6 @@ innerblocks.forEach((block) => {
       }, 800);
     } else {
       if (timePassed <= TIME_LIMIT) {
-        console.log(timePassed);
         if (TIME_LIMIT - timePassed <= 10) {
           timePassed = timePassed + (TIME_LIMIT - timePassed - 1);
         } else {
@@ -268,6 +268,11 @@ innerblocks.forEach((block) => {
           pointsMinus5.classList.toggle('visible');
         }, 800);
       }
+
+      timeMinus10.classList.toggle('visible');
+      setTimeout(() => {
+        timeMinus10.classList.toggle('visible');
+      }, 800);
 
     }
 
