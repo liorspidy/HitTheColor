@@ -13,7 +13,7 @@ const hourGlass = document.querySelector('.fa-hourglass-end');
 const startingTime = document.querySelector('.startingTime');
 const timeSet = document.querySelector('#setTime');
 
-const blocksColor = '#FAD897';
+const blocksColor = '#EBEBEB';
 let dotColors = null;
 let TIME_LIMIT = 60;
 
@@ -231,7 +231,13 @@ function getRandomColor() {
   return color;
 }
 
-let randBlock = innerblocks[Math.floor(Math.random() * innerblocks.length)];
+function getRandomFactor(){
+  let randFactor = Math.floor(Math.random() * innerblocks.length);
+  return randFactor;
+}
+
+let randFactor = getRandomFactor();
+let randBlock = innerblocks[randFactor];
 let oldBlock = randBlock;
 
 let randomColor = getRandomColor();
@@ -261,6 +267,11 @@ innerblocks.forEach((block) => {
         }
       }
 
+      document.querySelector('.outer').classList.toggle('move');
+      setTimeout(function(){
+        document.querySelector('.outer').classList.toggle('move');
+      },300)
+
       if (scoreValue.innerHTML > 0) {
         curScore = curScore - 5;
         pointsMinus5.classList.toggle('visible');
@@ -279,7 +290,8 @@ innerblocks.forEach((block) => {
     oldBlock.style.backgroundColor = blocksColor;
     scoreValue.innerHTML = curScore;
 
-    randBlock = innerblocks[Math.floor(Math.random() * innerblocks.length)];
+    randFactor = getRandomFactor();
+    randBlock = innerblocks[randFactor];
 
     randomColor = getRandomColor();
     while (randomColor == blocksColor) {
