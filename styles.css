@@ -180,10 +180,10 @@ border: 3px solid rgba(0, 0, 0, 0.01);
 pointer-events: none;
 }
 
-.inner:hover{
+/* .inner:hover{
 transition: 0.2s;
 opacity: 0.8;
-}
+} */
 
 .inner:active {
   transition: 0.1s;
@@ -196,7 +196,7 @@ opacity: 0.8;
   font-weight: bold;
   position: fixed;
   top: 81%;
-  left: 40%;
+  left: 34%;
   transform: translate(-50%,-50%);
 }
 
@@ -206,7 +206,7 @@ opacity: 0.8;
   font-weight: bold;
   position: fixed;
   top: 81%;
-  left: 67%;
+  left: 73%;
   transform: translate(-50%,-50%);
 }
 
@@ -492,18 +492,6 @@ div.clickEffect{
     top: 100vh;
     left: 26%;
   }
-
-  /* .fa-heart.pop{
-    animation-name: popUpHearts;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-  }
-
-  .fa-heart.away{
-    animation-name: hideHearts;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-  } */
 
   @keyframes popUpHearts{
       
