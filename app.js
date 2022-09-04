@@ -117,19 +117,19 @@ zenMode.addEventListener('click',function(){
     for (heart in hearts){
       i+=1;
       $('#heart'+i).animate({top: '100vh'},200);
-      $('#heart'+i).animate({top: '81vh'},200);
-      $('#heart'+i).animate({top: '84vh'},200);
+      $('#heart'+i).animate({top: '79vh'},200);
       $('#heart'+i).animate({top: '82vh'},200);
-      $('#heart'+i).css('top','82vh');
+      $('#heart'+i).animate({top: '80vh'},200);
+      $('#heart'+i).css('top','80vh');
     }
     $('#app').fadeTo(500, 0);
   }
   if (h%2==0) {
     for (heart in hearts){
       i+=1;
+      $('#heart'+i).animate({top: '80vh'},200);
       $('#heart'+i).animate({top: '82vh'},200);
-      $('#heart'+i).animate({top: '84vh'},200);
-      $('#heart'+i).animate({top: '81vh'},200);
+      $('#heart'+i).animate({top: '79vh'},200);
       $('#heart'+i).animate({top: '100vh'},200);
       $('#heart'+i).css('top','100vh');
     }

@@ -336,7 +336,7 @@ background-color: rgb(224, 224, 224);
 
 @keyframes slideUp {
   from {
-      top: 65vh;
+      top: 64vh;
       opacity: 0;
   }
 
@@ -345,7 +345,7 @@ background-color: rgb(224, 224, 224);
   }
 
   to {
-      top: 62vh;
+      top: 61vh;
       opacity: 0;
   }
 }
