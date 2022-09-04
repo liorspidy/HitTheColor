@@ -195,7 +195,7 @@ opacity: 0.8;
   font-size: 35px;
   font-weight: bold;
   position: fixed;
-  top: 79%;
+  top: 81%;
   left: 40%;
   transform: translate(-50%,-50%);
 }
@@ -205,7 +205,7 @@ opacity: 0.8;
   font-size: 35px;
   font-weight: bold;
   position: fixed;
-  top: 79%;
+  top: 81%;
   left: 67%;
   transform: translate(-50%,-50%);
 }
@@ -336,7 +336,7 @@ background-color: rgb(224, 224, 224);
 
 @keyframes slideUp {
   from {
-      top: 68vh;
+      top: 66vh;
       opacity: 0;
   }
 
@@ -345,7 +345,7 @@ background-color: rgb(224, 224, 224);
   }
 
   to {
-      top: 65vh;
+      top: 63vh;
       opacity: 0;
   }
 }
