@@ -88,7 +88,7 @@ $(timeSet).keypress(function (event) {
     TIME_LIMIT = timeSet.value;
     document.querySelector('.base-timer__label').innerHTML = formatTime(TIME_LIMIT);
     startingTime.classList.toggle('visible');
-
+    timeSet.value = '';
   }
 });
 

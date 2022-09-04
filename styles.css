@@ -59,6 +59,16 @@ to {
 }
 }
 
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
 .startingTime{
 display: none;
 }
@@ -67,9 +77,9 @@ display: none;
 display: block;
 position: fixed;
 text-align: center;
-max-width: 25%;
+min-width: -webkit-fill-available;
 padding: 30px;
-top: 50%;
+top: 52%;
 left: 50%;
 transform: translate(-50%,-50%);
 background-color: rgb(241, 241, 241);
@@ -81,11 +91,15 @@ font-size: larger;
 font-weight: bold;
 text-align: center;
 overflow: hidden;
+animation: fadeIn 0.2s ease-in-out
 }
 
 #setTime{
-width: 15vw;
+width: 30vw;
 height: 5vw;
+position: relative;
+padding: 20px;
+margin: 20px;
 text-align: center;
 font-size: larger;
 font-weight: bold;
@@ -112,16 +126,17 @@ font-weight: bold;
   width: 50vw;
   left: 25vw;
   position: fixed;
+  font-size: 12px;
 }
 
 .dot {
-  height: 6vw;
-  width: 6vw;
+  height: 13vw;
+  width: 13vw;
   background-color: blueviolet;
   border-radius: 50%;
   display: inline-block;
   position: absolute;
-  top: 20%;
+  top: 28%;
   left: 50%;
   transform: translate(-50%,-50%);
   /* border: 1px solid rgb(235, 235, 235); */
@@ -133,17 +148,17 @@ font-weight: bold;
 .outer{
   display: grid;
   grid-template-columns: auto auto auto;
-  width: 45vw;
-  height: 45vw;
+  width: 70vw;
+  height: 70vw;
   position: fixed;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%,-50%);
   background-color: rgba(255, 255, 255, 0);
 }
 
 .outer.move{
-  display: grid;
+  /* display: grid;
   grid-template-columns: auto auto auto;
   width: 45vw;
   height: 45vw;
@@ -151,7 +166,7 @@ font-weight: bold;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0); */
   animation-name: jiggle;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
@@ -184,29 +199,23 @@ opacity: 0.8;
   opacity: 1;
 }
 
-/* 
-.inner:active > .points5{
-  transition: 0.1s;
-  background-color: rgb(231, 146, 36);
-} */
-
 .score{
   padding-top: 20px;
-  font-size: x-large;
+  font-size: 35px;
   font-weight: bold;
   position: fixed;
-  top: 80%;
-  left: 45%;
+  top: 79%;
+  left: 40%;
   transform: translate(-50%,-50%);
 }
 
 .score_value{
   padding-top: 20px;
-  font-size: x-large;
+  font-size: 35px;
   font-weight: bold;
   position: fixed;
-  top: 80%;
-  left: 55%;
+  top: 79%;
+  left: 65%;
   transform: translate(-50%,-50%);
 }
 
@@ -221,8 +230,8 @@ display: none;
   padding-top: 20px;
   font-size: 35px;
   position: fixed;
-  top: 80vh;
-  left: 27vw;
+  top: 90%;
+  left: 42%;
   animation-name: slideUp;
   animation-duration: 0.7s;
   animation-timing-function: ease-in-out;
@@ -240,8 +249,8 @@ display: none;
   padding-top: 20px;
   font-size: 35px;
   position: fixed;
-  top: 80vh;
-  left: 27vw;
+  top: 90%;
+  left: 45%;
   animation-name: slideUp;
   animation-duration: 0.7s;
   animation-timing-function: ease-in-out;
@@ -259,7 +268,7 @@ display: none;
     padding-top: 20px;
     font-size: 35px;
     position: fixed;
-    left: 22vw;
+    left: 40%;
     animation-name: slideUpMinus10;
     animation-duration: 0.7s;
     animation-timing-function: ease-in-out;
@@ -275,9 +284,10 @@ display: none;
   display: block;
   position: fixed;
   text-align: center;
-  max-width: 100%;
-  padding: 30px;
-  top: 50%;
+  justify-content: center;
+  min-width: -webkit-fill-available;
+  padding: 20px;
+  top: 52%;
   left: 50%;
   transform: translate(-50%,-50%);
   background-color: rgb(241, 241, 241);
@@ -298,9 +308,9 @@ animation-timing-function: ease-in-out;
 display: block;
 position: fixed;
 text-align: center;
-max-width: 25%;
-padding: 30px;
-top: 50%;
+max-width: 35%;
+padding: 25px;
+top: 52%;
 left: 50%;
 transform: translate(-50%,-50%);
 background-color: rgb(241, 241, 241);
@@ -335,7 +345,7 @@ background-color: rgb(224, 224, 224);
 
 @keyframes slideUp {
   from {
-      top: 79vh;
+      top: 70vh;
       opacity: 0;
   }
 
@@ -344,7 +354,7 @@ background-color: rgb(224, 224, 224);
   }
 
   to {
-      top: 76vh;
+      top: 67vh;
       opacity: 0;
   }
 }
@@ -372,7 +382,7 @@ background-color: rgb(224, 224, 224);
 
 @keyframes slideUpMinus10 {
   from {
-      top: 9vh;
+      top: 12vh;
       opacity: 0;
   }
 
@@ -381,7 +391,7 @@ background-color: rgb(224, 224, 224);
   }
 
   to {
-      top: 7vh;
+      top: 9vh;
       opacity: 0;
   }
 }
@@ -400,10 +410,10 @@ to {
 
 .base-timer {
   position: fixed;
-  top: 30px;
+  top: 100px;
   left: 30px;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 }
 
 .base-timer__svg {
@@ -444,8 +454,8 @@ to {
 
 .base-timer__label {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   top: 0;
   display: flex;
   align-items: center;
@@ -489,7 +499,7 @@ div.clickEffect{
     position: relative;
     margin: 15px;
     top: 100vh;
-    left: 42vw;
+    left: 31%;
   }
 
   /* .fa-heart.pop{
