@@ -351,9 +351,9 @@ innerblocks.forEach((block) => {
         }, 800);
       }
       if (h%2==1){
-        $('#heart'+j).animate({top: '85vh'},200);
-        $('#heart'+j).animate({top: '86vh'},200);
-        $('#heart'+j).animate({top: '83vh'},200);
+        $('#heart'+j).animate({top: '78vh'},200);
+        $('#heart'+j).animate({top: '80vh'},200);
+        $('#heart'+j).animate({top: '77vh'},200);
         $('#heart'+j).animate({top: '100vh'},200);
         $('#heart'+j).css('top','100vh');
         j=j-1;
