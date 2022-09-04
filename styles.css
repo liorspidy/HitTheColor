@@ -188,6 +188,7 @@ opacity: 0.8;
 .inner:active {
   transition: 0.1s;
   opacity: 1;
+  animation: pushed 0.3s ease-out;
 }
 
 .score{
@@ -397,6 +398,17 @@ to {
     opacity: 0;
     display: none;
 }
+}
+
+@keyframes pushed {
+from {
+    scale: 0.9;
+}
+
+to {
+    scale: 1;
+}
+
 }
 
 .base-timer {
