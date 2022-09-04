@@ -259,7 +259,7 @@ display: none;
     padding-top: 20px;
     font-size: 32px;
     position: fixed;
-    left: 43%;
+    left: 12%;
     animation-name: slideUpMinus10;
     animation-duration: 0.7s;
     animation-timing-function: ease-in-out;
@@ -373,7 +373,7 @@ background-color: rgb(224, 224, 224);
 
 @keyframes slideUpMinus10 {
   from {
-      top: 14vh;
+      top: 10vh;
       opacity: 0;
   }
 
@@ -382,7 +382,7 @@ background-color: rgb(224, 224, 224);
   }
 
   to {
-      top: 10vh;
+      top: 6vh;
       opacity: 0;
   }
 }
