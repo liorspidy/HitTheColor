@@ -12,6 +12,8 @@ const timer = document.querySelector('#app');
 const hourGlass = document.querySelector('.fa-hourglass-end');
 const startingTime = document.querySelector('.startingTime');
 const timeSet = document.querySelector('#setTime');
+const zenMode = document.querySelector('.fa-yin-yang');
+const hearts = document.querySelectorAll('.fa-heart');
 
 const blocksColor = '#EBEBEB';
 let dotColors = null;
@@ -38,7 +40,6 @@ startGame.addEventListener(
   function () {
     startGame.classList.toggle('visible');
     toggleBlockInnerBlocks();
-    $('#app').fadeTo(500, 1);
     scoreValue.innerHTML = 0;
     clearInterval(dotColors);
 
@@ -48,12 +49,16 @@ startGame.addEventListener(
     randBlock.style.backgroundColor = randomColor;
     oldBlock = randBlock;
 
+    if (h%2==0){
     startTimer();
+    $('#app').fadeTo(500, 1);
+    }
     setTimeout(function () {
       $('.startGame').hide();
     }, 1200);
 
     hourGlass.classList.toggle('inactive');
+    zenMode.classList.toggle('inactive');
   },
   { once: true }
 );
@@ -65,8 +70,9 @@ $(startGame).mouseup(function(){
   startGame.style.transform = 'scale(1) translate(-50%,-50%)';
 });
 
+// TIMED MODE
 $(hourGlass).mousedown(function () {
-  hourGlass.style.transform = 'scale(1.6) rotate(180deg)';
+  hourGlass.style.transform = 'scale(1.5) rotate(180deg)';
 });
 $(hourGlass).mouseup(function () {
   hourGlass.style.transform = 'scale(1.7)';
@@ -76,11 +82,6 @@ hourGlass.addEventListener('click',function(){
   startingTime.classList.toggle('visible');
 })
 
-restart.addEventListener('click', function () {
-  location.reload();
-  startGame.classList.toggle('visible');
-});
-
 $(timeSet).keypress(function (event) {
   var keycode = event.keyCode ? event.keyCode : event.which;
   if (keycode == '13') {
@@ -89,6 +90,60 @@ $(timeSet).keypress(function (event) {
     startingTime.classList.toggle('visible');
 
   }
+});
+
+// ZEN MODE:
+$(zenMode).mousedown(function () {
+  zenMode.style.transform = 'scale(1.5) rotate(180deg)';
+});
+$(zenMode).mouseup(function () {
+  zenMode.style.transform = 'scale(1.7)';
+});
+
+$(zenMode).mouseenter(function(){
+  zenMode.style.rotate = '180deg';
+})
+
+$(zenMode).mouseleave(function(){
+  zenMode.style.rotate = '';
+})
+
+let h=0;
+let i=0;
+zenMode.addEventListener('click',function(){
+  h+=1;
+
+  if (h%2==1) {
+    for (heart in hearts){
+      i+=1;
+      $('#heart'+i).animate({top: '100vh'},200);
+      $('#heart'+i).animate({top: '83vh'},200);
+      $('#heart'+i).animate({top: '86vh'},200);
+      $('#heart'+i).animate({top: '85vh'},200);
+      $('#heart'+i).css('top','85vh');
+    }
+    $('#app').fadeTo(500, 0);
+  }
+  if (h%2==0) {
+    for (heart in hearts){
+      i+=1;
+      $('#heart'+i).animate({top: '85vh'},200);
+      $('#heart'+i).animate({top: '86vh'},200);
+      $('#heart'+i).animate({top: '83vh'},200);
+      $('#heart'+i).animate({top: '100vh'},200);
+      $('#heart'+i).css('top','100vh');
+    }
+    timeSet.value = ''
+    TIME_LIMIT = 60;
+    document.querySelector('.base-timer__label').innerHTML = formatTime(TIME_LIMIT);
+    $('#app').fadeTo(500, 0.3);      
+  }
+  i=0;
+})
+
+restart.addEventListener('click', function () {
+  location.reload();
+  startGame.classList.toggle('visible');
 });
 
 function clickEffect(e) {
@@ -239,17 +294,26 @@ function getRandomFactor(){
 let randFactor = getRandomFactor();
 let randBlock = innerblocks[randFactor];
 let oldBlock = randBlock;
-
+let otherRandBlock;
 let randomColor = getRandomColor();
+
 while (randomColor == blocksColor) {
   randomColor = getRandomColor();
 }
+
+let factorArr = [];
+factorArr.push(randBlock);
+// while (!factorArr.includes(randBlock)){
+// otherRandBlock = innerblocks[randFactor];
+// }
+// console.log(randBlock);
+// console.log(otherRandBlock);
 
 dot.style.backgroundColor = randomColor;
 randBlock.style.backgroundColor = randomColor;
 
 let curScore = 0;
-
+let j=3;
 innerblocks.forEach((block) => {
   block.addEventListener('click', function () {
     if (this === randBlock) {
@@ -258,7 +322,8 @@ innerblocks.forEach((block) => {
       setTimeout(() => {
         points5.classList.toggle('visible');
       }, 800);
-    } else {
+    } 
+    else {
       if (timePassed <= TIME_LIMIT) {
         if (TIME_LIMIT - timePassed <= 10) {
           timePassed = timePassed + (TIME_LIMIT - timePassed - 1);
@@ -279,12 +344,27 @@ innerblocks.forEach((block) => {
           pointsMinus5.classList.toggle('visible');
         }, 800);
       }
-
-      timeMinus10.classList.toggle('visible');
-      setTimeout(() => {
+      if (h%2==0){
         timeMinus10.classList.toggle('visible');
-      }, 800);
-
+        setTimeout(() => {
+          timeMinus10.classList.toggle('visible');
+        }, 800);
+      }
+      if (h%2==1){
+        $('#heart'+j).animate({top: '85vh'},200);
+        $('#heart'+j).animate({top: '86vh'},200);
+        $('#heart'+j).animate({top: '83vh'},200);
+        $('#heart'+j).animate({top: '100vh'},200);
+        $('#heart'+j).css('top','100vh');
+        j=j-1;
+        if (j==0){
+          setTimeout(function(){
+            gameOver.classList.toggle('visible');
+            toggleBlockInnerBlocks();
+          },200);
+          j=3;
+        }
+      }
     }
 
     oldBlock.style.backgroundColor = blocksColor;
