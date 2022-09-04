@@ -259,7 +259,7 @@ display: none;
     padding-top: 20px;
     font-size: 32px;
     position: fixed;
-    left: 12%;
+    left: 14%;
     animation-name: slideUpMinus10;
     animation-duration: 0.7s;
     animation-timing-function: ease-in-out;
