@@ -115,23 +115,42 @@ zenMode.addEventListener('click',function(){
 
   if (h%2==1) {
     for (heart in hearts){
-      i+=1;
-      $('#heart'+i).animate({top: '100vh'},200);
-      $('#heart'+i).animate({top: '79vh'},200);
-      $('#heart'+i).animate({top: '82vh'},200);
-      $('#heart'+i).animate({top: '80vh'},200);
-      $('#heart'+i).css('top','80vh');
-    }
+      i += 1;
+      if (width < 800) {
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).animate({ top: '79vh' }, 200);
+        $('#heart' + i).animate({ top: '82vh' }, 200);
+        $('#heart' + i).animate({ top: '80vh' }, 200);
+        $('#heart' + i).css('top', '80vh');
+      }
+      if (width >= 800) {
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).animate({ top: '89vh' }, 200);
+        $('#heart' + i).animate({ top: '92vh' }, 200);
+        $('#heart' + i).animate({ top: '90vh' }, 200);
+        $('#heart' + i).css('top', '90vh');
+      }
+    } 
+
     $('#app').fadeTo(500, 0);
   }
   if (h%2==0) {
     for (heart in hearts){
       i+=1;
-      $('#heart'+i).animate({top: '80vh'},200);
-      $('#heart'+i).animate({top: '82vh'},200);
-      $('#heart'+i).animate({top: '79vh'},200);
-      $('#heart'+i).animate({top: '100vh'},200);
-      $('#heart'+i).css('top','100vh');
+      if (width < 800) {
+        $('#heart' + i).animate({ top: '80vh' }, 200);
+        $('#heart' + i).animate({ top: '82vh' }, 200);
+        $('#heart' + i).animate({ top: '79vh' }, 200);
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).css('top', '100vh');
+      }
+      if (width >= 800) {
+        $('#heart' + i).animate({ top: '90vh' }, 200);
+        $('#heart' + i).animate({ top: '92vh' }, 200);
+        $('#heart' + i).animate({ top: '89vh' }, 200);
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).css('top', '100vh');
+      }
     }
     timeSet.value = ''
     TIME_LIMIT = 60;
@@ -314,6 +333,8 @@ randBlock.style.backgroundColor = randomColor;
 
 let curScore = 0;
 let j=3;
+let width = screen.width;
+
 innerblocks.forEach((block) => {
   block.addEventListener('click', function () {
     if (this === randBlock) {
@@ -350,12 +371,23 @@ innerblocks.forEach((block) => {
           timeMinus10.classList.toggle('visible');
         }, 800);
       }
+      console.log(width);
       if (h%2==1){
+        if (width<800){
         $('#heart'+j).animate({top: '80vh'},200);
         $('#heart'+j).animate({top: '82vh'},200);
         $('#heart'+j).animate({top: '79vh'},200);
         $('#heart'+j).animate({top: '100vh'},200);
         $('#heart'+j).css('top','100vh');
+        }
+        if (width>=800){
+        $('#heart' + j).animate({ top: '90vh' }, 200);
+        $('#heart' + j).animate({ top: '92vh' }, 200);
+        $('#heart' + j).animate({ top: '89vh' }, 200);
+        $('#heart' + j).animate({ top: '100vh' }, 200);
+        $('#heart' + j).css('top', '100vh');
+        }
+
         j=j-1;
         if (j==0){
           setTimeout(function(){

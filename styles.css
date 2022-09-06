@@ -546,3 +546,85 @@ div.clickEffect{
       top: 105vh;
     }
   } 
+
+  @media (min-width:800px) {
+    .outer{
+      width: 40vw;
+      height: 40vw;
+    }
+    .dot{
+      width: 6vw;
+      height: 6vw;
+      top: 18vh;
+    }
+
+    .score{
+      top: 85%;
+      left: 45%;
+    }
+
+    .score_value{
+      top: 85%;
+      left: 72%;
+      width: 300px;
+      text-align: left;
+      margin-left: 10px;
+    }
+
+    .base-timer {
+      top: 90px;
+      left: 6vw;
+      width: 160px;
+      height: 160px;
+    }
+
+    .base-timer__label{
+      width: 160px;
+      height: 160px;
+      top: 0;
+      font-size: 35px;
+    }
+
+    .gameOver.visible{
+      
+      padding: 20px;
+      width: 10%;
+    }
+
+    .fa-heart{
+      left: 42%;
+    }
+
+    .time-10.visible{
+        left: 12.5%;
+        animation-name: slideUpMinus10;
+        animation-duration: 0.7s;
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+    }
+
+    .points5.visible{
+      left: 30%;
+    }
+
+    .points-5.visible{
+      left: 30%;
+    }
+
+    @keyframes slideUp {
+    from {
+        top: 80vh;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        top: 78vh;
+        opacity: 0;
+    }
+  }
+
+  }
