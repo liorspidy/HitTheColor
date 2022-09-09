@@ -187,21 +187,8 @@ zenMode.addEventListener('click',function(){
     zenMode.classList.toggle('on');
     for (heart in hearts){
       i+=1;
-      if (width < 800) {
-        $('#heart' + i).animate({ top: '80vh' }, 200);
-        $('#heart' + i).animate({ top: '82vh' }, 200);
-        $('#heart' + i).animate({ top: '79vh' }, 200);
-        $('#heart' + i).animate({ top: '100vh' }, 200);
-        $('#heart' + i).css('top', '100vh');
+      removeHeart(i);
       }
-      if (width >= 800) {
-        $('#heart' + i).animate({ top: '90vh' }, 200);
-        $('#heart' + i).animate({ top: '92vh' }, 200);
-        $('#heart' + i).animate({ top: '89vh' }, 200);
-        $('#heart' + i).animate({ top: '100vh' }, 200);
-        $('#heart' + i).css('top', '100vh');
-      }
-    }
     timeSet.value = ''
     TIME_LIMIT = 60;
     document.querySelector('.base-timer__label').innerHTML = formatTime(TIME_LIMIT);
@@ -451,7 +438,6 @@ function randomOtherBlocks(){
     (b) => b !== innerblocks[randFactor]
   );
   filteredInnerBlocks.forEach(b => {
-    console.log(b.id,b.style.backgroundColor);
     let randomColor_2 = getRandomColor();
     while (randomColor_2 === blocksColor || randomColor_2 === randomColor) {
       randomColor_2 = getRandomColor();
@@ -493,6 +479,50 @@ function randomOtherBlocksByLevel(){
 
 randomOtherBlocksByLevel();
 
+let heartsNum = 3;
+function addHeart(){
+  for (let i=1;i<=3;i++){
+    if(document.querySelector('#heart'+i).classList.contains('hide')){
+      $('#heart' + i).css('color','goldenrod');
+      $('#heart' + i).removeClass('hide');
+      if (width < 800) {
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).animate({ top: '79vh' }, 200);
+        $('#heart' + i).animate({ top: '82vh' }, 200);
+        $('#heart' + i).animate({ top: '80vh' }, 200);
+        $('#heart' + i).css('top', '80vh');
+        }
+      if (width >= 800) {
+        $('#heart' + i).animate({ top: '100vh' }, 200);
+        $('#heart' + i).animate({ top: '89vh' }, 200);
+        $('#heart' + i).animate({ top: '92vh' }, 200);
+        $('#heart' + i).animate({ top: '90vh' }, 200);
+        $('#heart' + i).css('top', '90vh');
+        }
+        heartsNum += 1;
+        break;
+    } 
+  }
+}
+
+function removeHeart(j){
+  if (width < 800) {
+    $('#heart' + j).animate({ top: '80vh' }, 200);
+    $('#heart' + j).animate({ top: '82vh' }, 200);
+    $('#heart' + j).animate({ top: '79vh' }, 200);
+    $('#heart' + j).animate({ top: '100vh' }, 200);
+    $('#heart' + j).css('top', '100vh');
+    $('#heart' + j).addClass('hide');
+  }
+  if (width >= 800) {
+    $('#heart' + j).animate({ top: '90vh' }, 200);
+    $('#heart' + j).animate({ top: '92vh' }, 200);
+    $('#heart' + j).animate({ top: '89vh' }, 200);
+    $('#heart' + j).animate({ top: '100vh' }, 200);
+    $('#heart' + j).css('top', '100vh');
+    $('#heart' + j).addClass('hide');
+  }
+}
 
 let bCounter = 0;
 let curScore = 0;
@@ -520,6 +550,10 @@ innerblocks.forEach((block) => {
         setTimeout(()=>{
           levelVal.classList.toggle('levelUp');
         },1500);
+        if (heartsNum < 3){
+          addHeart();
+          j=heartsNum;
+        }
       }
     } 
     else {
@@ -550,21 +584,10 @@ innerblocks.forEach((block) => {
         }, 800);
       }
       if (h%2==1){
-        if (width<800){
-        $('#heart'+j).animate({top: '80vh'},200);
-        $('#heart'+j).animate({top: '82vh'},200);
-        $('#heart'+j).animate({top: '79vh'},200);
-        $('#heart'+j).animate({top: '100vh'},200);
-        $('#heart'+j).css('top','100vh');
+        if(heartsNum>0){
+          heartsNum -= 1;
         }
-        if (width>=800){
-        $('#heart' + j).animate({ top: '90vh' }, 200);
-        $('#heart' + j).animate({ top: '92vh' }, 200);
-        $('#heart' + j).animate({ top: '89vh' }, 200);
-        $('#heart' + j).animate({ top: '100vh' }, 200);
-        $('#heart' + j).css('top', '100vh');
-        }
-
+        removeHeart(j);
         j=j-1;
         if (j==0){
           setTimeout(function(){
