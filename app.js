@@ -444,11 +444,14 @@ while (randomColor === blocksColor) {
   randomColor = getRandomColor();
 }
 
-let filteredInnerBlocks = [...innerblocks].filter(b => (b !== innerblocks[randFactor]));
 
 //generate colors to different blocks 
 function randomOtherBlocks(){
+  let filteredInnerBlocks = [...innerblocks].filter(
+    (b) => b !== innerblocks[randFactor]
+  );
   filteredInnerBlocks.forEach(b => {
+    console.log(b.id,b.style.backgroundColor);
     let randomColor_2 = getRandomColor();
     while (randomColor_2 === blocksColor || randomColor_2 === randomColor) {
       randomColor_2 = getRandomColor();
