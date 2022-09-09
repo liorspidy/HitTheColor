@@ -14,10 +14,18 @@ const startingTime = document.querySelector('.startingTime');
 const timeSet = document.querySelector('#setTime');
 const zenMode = document.querySelector('.fa-yin-yang');
 const hearts = document.querySelectorAll('.fa-heart');
+const levelVal = document.querySelector('.level_value');
+const levelTitle = document.querySelector('.level');
+const levelsBytton = document.querySelector('.fa-circle-up');
+const hardMode = document.querySelector('.fa-face-dizzy');
+const BG = document.querySelector('.BG');
 
+const width = screen.width;
 const blocksColor = '#EBEBEB';
 let dotColors = null;
 let TIME_LIMIT = 60;
+let level = 0;
+let mode = 0;
 
 function changeDotColors() {
   dotColors = setInterval(() => {
@@ -40,6 +48,13 @@ startGame.addEventListener(
   function () {
     startGame.classList.toggle('visible');
     toggleBlockInnerBlocks();
+    if (mode == 2){
+      randomOtherBlocks();
+      levelsBytton.classList.toggle('inactive');
+    }
+    if (mode == 1){
+      randomOtherBlocksByLevel(level);
+    }
     scoreValue.innerHTML = 0;
     clearInterval(dotColors);
 
@@ -59,6 +74,8 @@ startGame.addEventListener(
 
     hourGlass.classList.toggle('inactive');
     zenMode.classList.toggle('inactive');
+    levelsBytton.classList.toggle('inactive');
+    hardMode.classList.toggle('inactive');
   },
   { once: true }
 );
@@ -71,16 +88,43 @@ $(startGame).mouseup(function(){
 });
 
 // TIMED MODE
-$(hourGlass).mousedown(function () {
-  hourGlass.style.transform = 'scale(1.5) rotate(180deg)';
-});
-$(hourGlass).mouseup(function () {
-  hourGlass.style.transform = 'scale(1.7)';
-});
 
+let hg=0;
 hourGlass.addEventListener('click',function(){
+  hg+=1;
   startingTime.classList.toggle('visible');
+
+  if (hg%2==1) {
+    hourGlass.classList.toggle('on');
+    $(BG).on('click',function(){
+      startingTime.classList.toggle('visible');
+      TIME_LIMIT = timeSet.value;
+      document.querySelector('.base-timer__label').innerHTML = formatTime(TIME_LIMIT);
+      hourGlass.classList.toggle('on');
+  })
+  }
+  if (hg%2==0){
+    hourGlass.classList.toggle('on');
+  }
+  timeSet.value = '';
 })
+
+if (width>=800){
+  $(hourGlass).mousedown(function () {
+    hourGlass.style.transform = 'scale(1.2)';
+  });
+  $(hourGlass).mouseup(function () {
+    hourGlass.style.transform = 'scale(1.4)';
+  });
+}
+// else{
+//   $(hourGlass).mousedown(function () {
+//     hourGlass.style.transform = 'scale(1.2)';
+//   });
+//   $(hourGlass).mouseup(function () {
+//     hourGlass.style.transform = 'scale(1.4)';
+//   }); 
+// }
 
 $(timeSet).keypress(function (event) {
   var keycode = event.keyCode ? event.keyCode : event.which;
@@ -88,25 +132,29 @@ $(timeSet).keypress(function (event) {
     TIME_LIMIT = timeSet.value;
     document.querySelector('.base-timer__label').innerHTML = formatTime(TIME_LIMIT);
     startingTime.classList.toggle('visible');
+    hourGlass.classList.toggle('on');
     timeSet.value = '';
   }
 });
 
+
 // ZEN MODE:
-$(zenMode).mousedown(function () {
-  zenMode.style.transform = 'scale(1.5) rotate(180deg)';
-});
-$(zenMode).mouseup(function () {
-  zenMode.style.transform = 'scale(1.7)';
-});
-
-$(zenMode).mouseenter(function(){
-  zenMode.style.rotate = '180deg';
-})
-
-$(zenMode).mouseleave(function(){
-  zenMode.style.rotate = '';
-})
+if (width>=800){
+  $(zenMode).mousedown(function () {
+    zenMode.style.transform = 'scale(1.2)';
+  });
+  $(zenMode).mouseup(function () {
+    zenMode.style.transform = 'scale(1.4)';
+  });
+}
+// else{
+//   $(zenMode).mousedown(function () {
+//     zenMode.style.transform = 'scale(1.2)';
+//   });
+//   $(zenMode).mouseup(function () {
+//     zenMode.style.transform = 'scale(1.4)';
+//   }); 
+// }
 
 let h=0;
 let i=0;
@@ -114,6 +162,7 @@ zenMode.addEventListener('click',function(){
   h+=1;
 
   if (h%2==1) {
+    zenMode.classList.toggle('on');
     for (heart in hearts){
       i += 1;
       if (width < 800) {
@@ -135,6 +184,7 @@ zenMode.addEventListener('click',function(){
     $('#app').fadeTo(500, 0);
   }
   if (h%2==0) {
+    zenMode.classList.toggle('on');
     for (heart in hearts){
       i+=1;
       if (width < 800) {
@@ -159,6 +209,82 @@ zenMode.addEventListener('click',function(){
   }
   i=0;
 })
+
+// levels mode
+let l=0;
+levelsBytton.addEventListener('click',function(){
+  l+=1;
+
+  if (l%2==1) {
+    levelsBytton.classList.toggle('on');
+    hardMode.classList.toggle('inactive');
+    levelTitle.classList.toggle('on');
+    levelVal.classList.toggle('on');
+    mode = 1;
+  }
+  if (l%2==0){
+    levelsBytton.classList.toggle('on');
+    hardMode.classList.toggle('inactive');
+    levelTitle.classList.toggle('on');
+    levelVal.classList.toggle('on');
+    mode = 0;
+  }
+})
+
+if (width>=800){
+  $(levelsBytton).mousedown(function () {
+    levelsBytton.style.transform = 'scale(1.2)';
+  });
+  $(levelsBytton).mouseup(function () {
+    levelsBytton.style.transform = 'scale(1.4)';
+  });
+}
+// else{
+//   $(levelsBytton).mousedown(function () {
+//     levelsBytton.style.transform = 'scale(1.2)';
+//   });
+//   $(levelsBytton).mouseup(function () {
+//     levelsBytton.style.transform = 'scale(1.4)';
+//   });
+// }
+
+// hard mode
+let hm=0
+hardMode.addEventListener('click',function(){
+  hm+=1;
+
+  if (hm%2==1) {
+    hardMode.classList.toggle('on');
+    levelsBytton.classList.toggle('inactive');
+    randomOtherBlocks();
+    mode = 2;
+  }
+  if (hm%2==0){
+    hardMode.classList.toggle('on');
+    levelsBytton.classList.toggle('inactive');
+    filteredInnerBlocks.forEach(r=>{
+      r.style.backgroundColor=blocksColor;
+    })
+    mode = 0;
+  }
+})
+
+if (width>=800){
+  $(hardMode).mousedown(function () {
+    hardMode.style.transform = 'scale(1.2)';
+  });
+  $(hardMode).mouseup(function () {
+    hardMode.style.transform = 'scale(1.4)';
+  });
+}
+// else{
+//   $(hardMode).mousedown(function () {
+//     hardMode.style.transform = 'scale(1.2)';
+//   });
+//   $(hardMode).mouseup(function () {
+//     hardMode.style.transform = 'scale(1.4)';
+//   });
+// }
 
 restart.addEventListener('click', function () {
   location.reload();
@@ -313,36 +439,85 @@ function getRandomFactor(){
 let randFactor = getRandomFactor();
 let randBlock = innerblocks[randFactor];
 let oldBlock = randBlock;
-let otherRandBlock;
 let randomColor = getRandomColor();
-
-while (randomColor == blocksColor) {
+while (randomColor === blocksColor) {
   randomColor = getRandomColor();
 }
 
-let factorArr = [];
-factorArr.push(randBlock);
-// while (!factorArr.includes(randBlock)){
-// otherRandBlock = innerblocks[randFactor];
-// }
-// console.log(randBlock);
-// console.log(otherRandBlock);
+let filteredInnerBlocks = [...innerblocks].filter(b => (b !== innerblocks[randFactor]));
+
+//generate colors to different blocks 
+function randomOtherBlocks(){
+  filteredInnerBlocks.forEach(b => {
+    let randomColor_2 = getRandomColor();
+    while (randomColor_2 === blocksColor || randomColor_2 === randomColor) {
+      randomColor_2 = getRandomColor();
+    }
+    b.style.backgroundColor = randomColor_2;
+  });
+}
 
 dot.style.backgroundColor = randomColor;
 randBlock.style.backgroundColor = randomColor;
 
+//generate colors to different blocks - blocks number by level
+
+function getBlocksByLevel(level){
+  let blocks = [];
+  let bArr = [];
+  for (let i=0;i<level;i++){
+    let r = getRandomFactor();
+    while (r===randFactor || bArr.includes(r)){
+      r = getRandomFactor();
+    }
+    bArr.push(r);
+    blocks.push(innerblocks[r]);
+  }
+  return blocks;
+}
+
+let blocksByLevel= getBlocksByLevel(level);
+
+function randomOtherBlocksByLevel(){
+  blocksByLevel.forEach(b => {
+    let randomColor_2 = getRandomColor();
+    while (randomColor_2 === blocksColor || randomColor_2 === randomColor) {
+      randomColor_2 = getRandomColor();
+    }
+    b.style.backgroundColor = randomColor_2;
+  });
+}
+
+randomOtherBlocksByLevel();
+
+
+let bCounter = 0;
 let curScore = 0;
 let j=3;
-let width = screen.width;
+let oldBlocksByLevel = [];
 
 innerblocks.forEach((block) => {
   block.addEventListener('click', function () {
+    if(oldBlocksByLevel.length > 0 && mode == 1){
+      oldBlocksByLevel.forEach(b=>{
+        b.style.backgroundColor = blocksColor;
+      });
+    }
     if (this === randBlock) {
+      bCounter += 1;
       curScore = curScore + 5;
       points5.classList.toggle('visible');
       setTimeout(() => {
         points5.classList.toggle('visible');
       }, 800);
+      if (bCounter%10 == 0 && mode == 1){
+        level+=1;
+        levelVal.innerHTML = level;
+        levelVal.classList.toggle('levelUp');
+        setTimeout(()=>{
+          levelVal.classList.toggle('levelUp');
+        },1500);
+      }
     } 
     else {
       if (timePassed <= TIME_LIMIT) {
@@ -371,7 +546,6 @@ innerblocks.forEach((block) => {
           timeMinus10.classList.toggle('visible');
         }, 800);
       }
-      console.log(width);
       if (h%2==1){
         if (width<800){
         $('#heart'+j).animate({top: '80vh'},200);
@@ -400,6 +574,7 @@ innerblocks.forEach((block) => {
     }
 
     oldBlock.style.backgroundColor = blocksColor;
+
     scoreValue.innerHTML = curScore;
 
     randFactor = getRandomFactor();
@@ -410,12 +585,21 @@ innerblocks.forEach((block) => {
       randomColor = getRandomColor();
     }
 
+    if (mode == 2){
+      randomOtherBlocks();
+    }
+    if (mode == 1){
+      blocksByLevel= getBlocksByLevel(level);
+      oldBlocksByLevel = [...blocksByLevel];
+      randomOtherBlocksByLevel();
+    }
+
     oldBlock = randBlock;
 
-    oldBlock.style.backgroundColor = blocksColor;
     dot.style.backgroundColor = randomColor;
     randBlock.style.backgroundColor = randomColor;
 
     finalScore.innerHTML = scoreValue.innerHTML;
+
   });
-});     
+});

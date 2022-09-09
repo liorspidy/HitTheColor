@@ -16,19 +16,22 @@ html {
 
 .fa-hourglass-end{
   position: fixed;
-  transform: scale(1.7);
+  transform: scale(1.4);
   padding: 6px 8px;
   background-color: rgb(241, 241, 241);
   border-radius: 20%;
   border: 3px solid grey;
   left: 85%;
-  top:5%;
+  top:3%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) ;
+  transition: 0.2s;
 }
 
-.fa-hourglass-end:hover{
-animation: rotating 0.4s ease-in-out;
-}
+.fa-hourglass-end.on{
+  transition: 0.2s;
+  background-color: darkmagenta;
+  color: white;
+  }
 
 .fa-hourglass-end.inactive{
 pointer-events: none;
@@ -36,19 +39,72 @@ pointer-events: none;
 
 .fa-yin-yang{
   position: fixed;
-  transform: scale(1.7);
+  transform: scale(1.4);
   padding: 6px 6px;
   background-color: rgb(241, 241, 241);
   border-radius: 20%;
   border: 3px solid grey;
   left: 85%;
-  top:14%;
+  top:11%;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) ;
+  transition: 0.2s;
 }
 
 .fa-yin-yang.inactive{
   pointer-events: none;
   }
+
+.fa-yin-yang.on{
+  transition: 0.2s;
+  background-color: rgb(205, 134, 3);
+  color: white;
+  }
+
+.fa-circle-up{
+  position: fixed;
+  transform: scale(1.4);
+  padding: 6px 6px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 20%;
+  border: 3px solid grey;
+  left: 85%;
+  top:19%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) ;
+  transition: 0.2s;
+}
+
+.fa-circle-up.on{
+transition: 0.2s;
+background-color: navy;
+color: white;
+}
+
+.fa-circle-up.inactive{
+  pointer-events: none;
+}
+
+.fa-face-dizzy{
+  position: fixed;
+  transform: scale(1.4);
+  padding: 6px 6px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 20%;
+  border: 3px solid grey;
+  left: 85%;
+  top:27%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) ;
+  transition: 0.2s;
+}
+
+.fa-face-dizzy.on{
+  transition: 0.2s;
+  background-color: firebrick;
+  color: white;
+  }
+
+.fa-face-dizzy.inactive{
+  pointer-events: none;
+}
 
 @keyframes rotating {
 from {
@@ -139,10 +195,47 @@ font-weight: bold;
   top: 27%;
   left: 50%;
   transform: translate(-50%,-50%);
-  /* border: 1px solid rgb(235, 235, 235); */
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) ;
   transition: 0.3s;
-  z-index: 1;
+}
+
+.level{
+  font-weight: bold;
+  position: fixed;
+  top: 13%;
+  left: 35%;
+  font-size: 20px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.level_value{
+  font-weight: bold;
+  position: fixed;
+  width: 50px;
+  top: 13%;
+  left: 56%;
+  font-size: 20px;
+  text-align: left;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.level_value.levelUp{
+  top: 13%;
+  left: 56%;
+  transition: 0.3s;
+  color: rgb(235, 223, 55);
+}
+
+.level.on{
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.level_value.on{
+  opacity: 1;
+  transition: 0.3s;
 }
 
 .outer{
@@ -151,7 +244,7 @@ font-weight: bold;
   width: 70vw;
   height: 70vw;
   position: fixed;
-  top: 52%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%,-50%);
   background-color: rgba(255, 255, 255, 0);
@@ -294,6 +387,7 @@ display: none;
 animation-name: modelSlideUp;
 animation-duration: 1.2s;
 animation-timing-function: ease-in-out;
+z-index: 1;
 }
 
 .startGame{
@@ -414,9 +508,9 @@ to {
 .base-timer {
   position: fixed;
   top: 90px;
-  left: 15px;
-  width: 120px;
-  height: 120px;
+  left: 10px;
+  width: 110px;
+  height: 110px;
 }
 
 .base-timer__svg {
@@ -457,8 +551,8 @@ to {
 
 .base-timer__label {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   top: 0;
   display: flex;
   align-items: center;
@@ -625,6 +719,118 @@ div.clickEffect{
         top: 78vh;
         opacity: 0;
     }
+  }
+
+  .level{
+    font-weight: bold;
+    position: fixed;
+    top: 35%;
+    left: 8%;
+    font-size: 25px;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  
+  .level_value{
+    top: 35%;
+    left: 19%;
+    transition: 0.3s;
+    font-size: 25px;
+    opacity: 0;
+  }
+
+  /* .level.on{
+    opacity: 1;
+    transition: 0.3s;
+  }
+
+  .level_value.on{
+    opacity: 1;
+    transition: 0.3s;
+  } */
+
+  .level_value.levelUp{
+    top: 35%;
+    left: 19%;
+    transition: 0.3s;
+    color: rgb(235, 223, 55);
+  }
+
+  .fa-hourglass-end{
+    scale: 1.2;
+    left: 85%;
+    top:5%;
+  }
+/*   
+  .fa-hourglass-end:hover{
+  animation: rotating 0.4s ease-in-out;
+  } */
+  
+  .fa-hourglass-end.inactive{
+  pointer-events: none;
+  }
+  
+  .fa-yin-yang{
+    scale: 1.2;
+    left: 85%;
+    top:14%;
+  }
+
+  .fa-hourglass-end.on{
+    transition: 0.2s;
+    background-color: darkmagenta;
+    color: white;
+    }
+  
+  .fa-yin-yang.inactive{
+    pointer-events: none;
+    }
+
+  .fa-yin-yang.on{
+    transition: 0.2s;
+    background-color: rgb(205, 134, 3);
+    color: white;
+    }
+  
+  .fa-circle-up{
+    scale: 1.2;
+    left: 85%;
+    top:23%;
+  }
+  
+  .fa-circle-up.on{
+  transition: 0.2s;
+  background-color: navy;
+  color: white;
+  }
+  
+  .fa-circle-up.inactive{
+    pointer-events: none;
+  }
+  
+  .fa-face-dizzy{
+    scale: 1.2;
+    left: 85%;
+    top:32%;
+  }
+  
+  .fa-face-dizzy.on{
+    transition: 0.2s;
+    background-color: firebrick;
+    color: white;
+    }
+  
+  .fa-face-dizzy.inactive{
+    pointer-events: none;
+  }
+  
+  @keyframes rotating {
+  from {
+    transform: rotate(0deg) scale(1.7);
+  }
+  to {
+    transform: rotate(180deg) scale(1.7);
+  }
   }
 
   }
