@@ -432,10 +432,11 @@ while (randomColor === blocksColor) {
   randomColor = getRandomColor();
 }
 
-
+  let filteredInnerBlocks = [];
+  
 //generate colors to different blocks 
 function randomOtherBlocks(){
-  let filteredInnerBlocks = [...innerblocks].filter(
+  filteredInnerBlocks = [...innerblocks].filter(
     (b) => b !== innerblocks[randFactor]
   );
   filteredInnerBlocks.forEach(b => {
@@ -445,6 +446,7 @@ function randomOtherBlocks(){
     }
     b.style.backgroundColor = randomColor_2;
   });
+
 }
 
 dot.style.backgroundColor = randomColor;
