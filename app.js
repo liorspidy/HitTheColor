@@ -625,9 +625,15 @@ innerblocks.forEach((block) => {
       randomOtherBlocks();
     }
     if (mode == 1){
-      blocksByLevel= getBlocksByLevel(level);
+      if(level < 9){
+      blocksByLevel = getBlocksByLevel(level);
       oldBlocksByLevel = [...blocksByLevel];
       randomOtherBlocksByLevel();
+      }
+      else{
+        randomOtherBlocks();
+      }
+
     }
 
     oldBlock = randBlock;
