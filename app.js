@@ -3,6 +3,7 @@ const scoreValue = document.querySelector('.score_value');
 const gameOver = document.querySelector('.gameOver');
 const finalScore = document.querySelector('#yourScore');
 const points5 = document.querySelector('.points5');
+const points10 = document.querySelector('.points10');
 const pointsMinus5 = document.querySelector('.points-5');
 const timeMinus10 = document.querySelector('.time-10');
 const dot = document.querySelector('.dot');
@@ -538,11 +539,20 @@ innerblocks.forEach((block) => {
     }
     if (this === randBlock) {
       bCounter += 1;
+      if (level > 8){
+        curScore = curScore + 10;
+        points10.classList.toggle('visible');
+        setTimeout(() => {
+          points10.classList.toggle('visible');
+        }, 800);
+      }
+      else{
       curScore = curScore + 5;
       points5.classList.toggle('visible');
       setTimeout(() => {
         points5.classList.toggle('visible');
       }, 800);
+      }
       if (bCounter%10 == 0 && mode == 1){
         level+=1;
         levelVal.innerHTML = level;
