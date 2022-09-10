@@ -5,6 +5,7 @@ const finalScore = document.querySelector('#yourScore');
 const points5 = document.querySelector('.points5');
 const points10 = document.querySelector('.points10');
 const pointsMinus5 = document.querySelector('.points-5');
+const pointsMinus10 = document.querySelector('.points-10') 
 const timeMinus10 = document.querySelector('.time-10');
 const dot = document.querySelector('.dot');
 const restart = document.querySelector('#restart');
@@ -583,11 +584,20 @@ innerblocks.forEach((block) => {
       },300)
 
       if (scoreValue.innerHTML > 0) {
+        if (level > 8) {
+          curScore = curScore - 10;
+          pointsMinus10.classList.toggle('visible');
+          setTimeout(() => {
+            pointsMinus10.classList.toggle('visible');
+          }, 800);
+        }
+        else{
         curScore = curScore - 5;
         pointsMinus5.classList.toggle('visible');
         setTimeout(() => {
           pointsMinus5.classList.toggle('visible');
         }, 800);
+        }
       }
       if (h%2==0){
         timeMinus10.classList.toggle('visible');

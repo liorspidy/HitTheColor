@@ -325,11 +325,13 @@ display: none;
   opacity: 0;
 }
 
-.points-5{
+.points-5,
+.points-10{
 display: none;
 }
 
-.points-5.visible{
+.points-5.visible,
+.points-10.visible{
   display: block;
   color: rgb(164, 10, 10);
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6) ;
@@ -704,7 +706,8 @@ div.clickEffect{
       left: 29%;
     }
     
-    .points-5.visible{
+    .points-5.visible,
+    .points-10.visible{
       left: 30%;
     }
 
